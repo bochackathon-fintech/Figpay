@@ -28,18 +28,7 @@ export class HomePage {
   ) {}
 
   ionViewDidLoad () {
-    const modalData = {
-      name: 'Giakoumis',
-      amount: 3.69
-    }
-    const modal = this.modalController.create(PinModalComponent, modalData)
-    modal.onDidDismiss(onDismiss)
-    modal.present()
-    // this.initSocket()
-
-    function onDismiss (res) {
-      console.log('[PinModalComponent] onDismiss', res)
-    }
+    this.initSocket()
   }
 
   getContentStyle () {

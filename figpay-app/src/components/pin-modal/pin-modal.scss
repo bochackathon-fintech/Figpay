@@ -2,8 +2,8 @@ $empty-space: 50px;
 
 pin-modal {
   ion-content {
-    margin: $empty-space;
-    width: calc(100% - 2 * #{$empty-space});
+    margin: $empty-space $empty-space * 2;
+    width: calc(100% - 2 * #{$empty-space} * 2);
     height: calc(100% - 2 * #{$empty-space});
 
     .scroll-content {
@@ -15,7 +15,7 @@ pin-modal {
         margin: 20px auto 0;
 
         .col {
-          border-bottom: 1px solid #666;
+          border-bottom: 1px solid rgba(#666, .5);
           margin: 0 10px;
           height: 27px;
         }
@@ -28,7 +28,7 @@ pin-modal {
 
         margin: 25px auto 0;
 
-        width: 45%;
+        width: 50%;
 
         .col {
           padding: 10px;
