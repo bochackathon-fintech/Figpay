@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '(_90(@sdi$$x92^yqk5a@+w*yxf7avhkrl5&a6r4ry*2*=)t0m'
-
+SERVER_TYPE = os.environ.get('SERVER_TYPE', 'Not Set')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -122,8 +122,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 MEDIA_ROOT = 'media'
 MEDIA_URL_LOCAL = "/media/"
-MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
-#MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
+if SERVER_TYPE == 'PROD':
+    STATIC_ROOT = '/home/kyris/webapps/figbackend_static'
+    MEDIA_ROOT = '/home/kyris/webapps/figbackend_root'
+    MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
+else:
+    MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
 
 EXPORTER_FRONT_APPLICATION_PATH = '../figpay_dashboard'
 EXPORTER_ROUTER_PATH = 'figpay_backend.urls.router'
