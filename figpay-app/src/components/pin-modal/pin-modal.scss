@@ -1,0 +1,50 @@
+$empty-space: 50px;
+
+pin-modal {
+  ion-content {
+    margin: $empty-space $empty-space * 2;
+    width: calc(100% - 2 * #{$empty-space} * 2);
+    height: calc(100% - 2 * #{$empty-space});
+
+    .scroll-content {
+      padding: 20px;
+      text-align: center;
+
+      .password {
+        width: 60%;
+        margin: 20px auto 0;
+
+        .col {
+          border-bottom: 1px solid rgba(#666, .5);
+          margin: 0 10px;
+          height: 27px;
+        }
+      }
+
+      .dialpad {
+        text-align: center;
+        align-self: center;
+        justify-self: center;
+
+        margin: 25px auto 0;
+
+        width: 50%;
+
+        .col {
+          padding: 10px;
+
+          .dialpad__key {
+            width: 39px;
+            height: 40px;
+            line-height: 40px;
+
+            display: inline-block;
+
+            border: 1px solid #666;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}

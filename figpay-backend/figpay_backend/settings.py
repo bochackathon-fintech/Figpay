@@ -23,9 +23,9 @@ SECRET_KEY = '(_90(@sdi$$x92^yqk5a@+w*yxf7avhkrl5&a6r4ry*2*=)t0m'
 SERVER_TYPE = os.environ.get('SERVER_TYPE', 'Not Set')
 # SECURITY WARNING: don't run with debug turned on in production!
 if SERVER_TYPE == 'PROD':
-    DEBUG = True
-else:
     DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '.ngrok.io','.pixelactions.com']
 
@@ -127,7 +127,7 @@ MEDIA_ROOT = 'media'
 MEDIA_URL_LOCAL = "/media/"
 if SERVER_TYPE == 'PROD':
     STATIC_ROOT = '/home/kyris/webapps/figbackend_static'
-    MEDIA_ROOT = '/home/kyris/webapps/figbackend_root'
+    MEDIA_ROOT = '/home/kyris/webapps/figbackend_media'
     MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
 else:
     MEDIA_URL = 'http://056fad5a.ngrok.io/media/'

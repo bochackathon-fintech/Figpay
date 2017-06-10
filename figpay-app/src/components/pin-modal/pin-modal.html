@@ -1,0 +1,63 @@
+<ion-content>
+  Hello {{name}}, enter your pin to authorize your <strong>fig</strong> for <strong>{{amount}}</strong>
+
+  <div class="password">
+    <ion-row>
+      <ion-col>
+        <span class="password__key">{{password[0]}}</span>
+      </ion-col>
+      <ion-col>
+        <span class="password__key">{{password[1]}}</span>
+      </ion-col>
+      <ion-col>
+        <span class="password__key">{{password[2]}}</span>
+      </ion-col>
+      <ion-col>
+        <span class="password__key">{{password[3]}}</span>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="dialpad">
+    <ion-row>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(1)">1</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(2)">2</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(3)">3</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(4)">4</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(5)">5</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(6)">6</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(7)">7</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(8)">8</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(9)">9</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <button ion-button outline class="dialpad__key" (click)="dial(0)">0</button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </div>
+</ion-content>

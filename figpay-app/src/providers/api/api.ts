@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core'
 
 import { Http, Headers } from '@angular/http'
 
+import { ModalController } from 'ionic-angular'
+
 import { API_BASE_URL } from '../../constants'
+
+import { PinModalComponent } from '../../components/pin-modal/pin-modal'
 
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/first'
@@ -10,7 +14,8 @@ import 'rxjs/add/operator/first'
 @Injectable()
 export class ApiProvider {
   constructor(
-    public http: Http
+    private http: Http,
+    private modalController: ModalController
   ) {}
 
   pay (data) {
@@ -18,9 +23,25 @@ export class ApiProvider {
       this.recognize(data)
         .then((res:any) => {
           console.log('[ApiProvider] recognize', res)
-          return this.makePayment(Object.assign(data, JSON.parse(res.body)))
+
+          data = Object.assign(data, res.data)
+
+          const modalData = {
+            name: data.name,
+            amount: data.amount
+          }
+          const modal = this.modalController.create(PinModalComponent, modalData)
+          modal.onDidDismiss((res) => {
+            console.log('[ApiProvider] PinModalComponent onDismiss', res)
+
+            data = Object.assign(data, res)
+
+            this.makePayment(data)
+              .then(resolve)
+              .catch(reject)
+          })
+          modal.present()
         })
-        .then(resolve)
         .catch(reject)
     })
   }
@@ -33,6 +54,7 @@ export class ApiProvider {
       this.http
         .post(`${API_BASE_URL}/recognize`, postData, this.getHeaders())
         .first()
+        .map((res) => res.json())
         .subscribe(resolve, reject)
     })
   }
@@ -42,13 +64,14 @@ export class ApiProvider {
       const postData = {
         pos: '4e5ce2d9-852a-4160-b544-5688f39dcc4f',
         consumer: data.userId,
-        pin: '1234',
+        pin: data.pin,
         amount: data.amount,
         description: 'KEO 1/2 pint'
       }
       this.http
         .post(`${API_BASE_URL}/payments/vendors/`, postData, this.getHeaders())
         .first()
+        .map((res) => res.json())
         .subscribe(resolve, reject)
     })
   }
