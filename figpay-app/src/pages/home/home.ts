@@ -35,7 +35,7 @@ export class HomePage {
   }
 
   pay () {
-    console.error('[HomePage] pay', this.price)
+    console.log('[HomePage] pay', this.price)
 
     const pictureOpts: CameraPreviewPictureOptions = {
       width: 500,
@@ -44,7 +44,7 @@ export class HomePage {
     this.cameraPreview
       .takePicture(pictureOpts)
       .then((res) => {
-        console.error('[HomePage] cameraPreview takePicture', res)
+        console.log('[HomePage] cameraPreview takePicture', res)
 
         return this.apiProvider.pay({
           amount: this.price,

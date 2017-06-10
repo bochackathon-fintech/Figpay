@@ -15,18 +15,20 @@ app.use((req, res, next) => {
   next();
 })
 
-app.get('/', (req, res) => res.send({
+app.use(express.static('public'))
+
+app.get('/api', (req, res) => res.send({
   message: 'Fig Pay POS'
 }))
 
-app.get('/pay/:value', (req, res) => {
-  console.log('Pay request', req.params)
+app.post('/api/pay', (req, res) => {
+  console.log('Pay request', req.body)
 
-  if (!(req.params && req.params.value)) return res.sendStatus(400)
+  if (!req.body.value)) return res.sendStatus(400)
 
   wss.broadcast(JSON.stringify({
     command: 'fig',
-    value: parseFloat(req.params.value)
+    value: req.body.value
   }))
 
   res.sendStatus(200)
