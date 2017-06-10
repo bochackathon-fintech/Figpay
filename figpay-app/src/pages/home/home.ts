@@ -4,7 +4,10 @@ import {
   CameraPreview, CameraPreviewOptions,
   CameraPreviewPictureOptions
 } from '@ionic-native/camera-preview'
-import {WS_SERVER_URL} from "../../constants";
+
+import { WS_SERVER_URL } from '../../constants'
+
+import { ApiProvider } from '../../providers/api/api'
 
 @Component({
   selector: 'page-home',
@@ -17,35 +20,12 @@ export class HomePage {
 
 
   constructor(
-    private cameraPreview: CameraPreview
+    private cameraPreview: CameraPreview,
+    private apiProvider: ApiProvider
   ) {}
 
   ionViewDidLoad () {
     this.initSocket()
-  }
-
-  pay () {
-    const pictureOpts: CameraPreviewPictureOptions = {
-      width: 500,
-      height: 500
-    }
-    this.cameraPreview
-      .takePicture(pictureOpts)
-      .then((imageData) => {
-        console.log('data:image/jpeg;base64,' + imageData)
-
-        this.cameraPreview
-          .stopCamera()
-          .then((res) => {
-            this.cameraPreviewEnabled = false
-            console.log('[HomePage] stopCamera', res)
-          })
-          .catch((err) => {
-            console.error('[HomePage] stopCamera', err)
-          })
-      }, (err) => {
-        console.log(err)
-      })
   }
 
   getContentStyle () {
@@ -54,7 +34,42 @@ export class HomePage {
     }
   }
 
-  private startCameraPreview () {
+  pay () {
+    console.error('[HomePage] pay', this.price)
+
+    const pictureOpts: CameraPreviewPictureOptions = {
+      width: 500,
+      height: 500
+    }
+    this.cameraPreview
+      .takePicture(pictureOpts)
+      .then((res) => {
+        console.error('[HomePage] cameraPreview takePicture', res)
+
+        return this.apiProvider.pay({ file: res })
+      })
+      .catch((err) => {
+        console.error('[HomePage] cameraPreview takePicture', err)
+      })
+      .then((res) => {
+        console.log('[HomePage] apiProvider pay', res)
+
+        return this.cameraPreview.stopCamera()
+      })
+      .catch((err) => {
+        console.error('[HomePage] cameraPreview takePicture', err)
+      })
+      .then((res) => {
+        console.log('[HomePage] cameraPreview stopCamera', res)
+
+        this.cameraPreviewEnabled = false
+      })
+      .catch((err) => {
+        console.error('[HomePage] cameraPreview stopCamera', err)
+      })
+  }
+
+  private startCameraPreview (this) {
     console.log('[HomePage] starting cameraPreview')
 
     const cameraPreviewOpts: CameraPreviewOptions = {
@@ -74,6 +89,7 @@ export class HomePage {
       .then(
         (res) => {
           console.log('[HomePage] cameraPreview startCamera', res)
+
           this.cameraPreviewEnabled = true
         },
         (err) => {
@@ -100,11 +116,9 @@ export class HomePage {
 
     res = JSON.parse(res.data)
 
-    console.log('[HomePage] command', res)
-
     if (res.command === 'fig') {
       this.price = res.value
-      this.startCameraPreview.bind(this)
+      this.startCameraPreview()
     }
   }
 
