@@ -1,18 +1,28 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Injectable } from '@angular/core'
 
-/*
-  Generated class for the ApiProvider provider.
+import { Http } from '@angular/http'
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
+import { API_BASE_URL } from '../../constants'
+
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/first'
+
 @Injectable()
 export class ApiProvider {
+  constructor(
+    public http: Http
+  ) {}
 
-  constructor(public http: Http) {
-    console.log('Hello ApiProvider Provider');
+  pay (data) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(`${API_BASE_URL}/recognize`, {
+          file: data.file
+        })
+        .first()
+        .subscribe((next) => {
+          console.log(next)
+        }, reject)
+    })
   }
-
 }

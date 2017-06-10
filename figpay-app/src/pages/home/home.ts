@@ -46,7 +46,10 @@ export class HomePage {
       .then((res) => {
         console.error('[HomePage] cameraPreview takePicture', res)
 
-        return this.apiProvider.pay({ file: res })
+        return this.apiProvider.pay({
+          amount: this.price,
+          file: res[0]
+        })
       })
       .catch((err) => {
         console.error('[HomePage] cameraPreview takePicture', err)
@@ -57,7 +60,7 @@ export class HomePage {
         return this.cameraPreview.stopCamera()
       })
       .catch((err) => {
-        console.error('[HomePage] cameraPreview takePicture', err)
+        console.error('[HomePage] apiProvider pay', err)
       })
       .then((res) => {
         console.log('[HomePage] cameraPreview stopCamera', res)

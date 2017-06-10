@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { ErrorHandler, NgModule } from '@angular/core'
+import { Http, HttpModule} from '@angular/http'
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 
@@ -18,6 +19,7 @@ import { ApiProvider } from '../providers/api/api';
     HomePage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
