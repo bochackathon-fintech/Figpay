@@ -1,0 +1,54 @@
+$green: #649C43;
+$dark: #2D362F;
+$purple: #4E124F;
+.sidebar[data-color="purple"] .nav li, .off-canvas-sidebar[data-color="purple"] .nav li {
+  a {
+    font-family: 'Montserrat';
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    border-radius: 0;
+  }
+  &.active a {
+    background-color: $green;
+  }
+  &:hover a {
+    background-color: $dark;
+    color: white;
+  }
+
+}
+
+@keyframes justArrived {
+  0% {
+    background-color:#f9f9f9;
+  }
+  100% {
+    background-color:transparent;
+  }
+}
+
+.card.card-plain {
+  .card-header {
+    background-color: $green;
+    text-align: center;
+  }
+  thead tr th {
+    font-weight: 400;
+    font-size: 16px;
+  }
+  tr.just-arrived{
+    animation: 1s ease-out 0s 1 justArrived;
+  }
+}
+
+body {
+  font-family: 'Montserrat' !important;
+}
+
+.chart-container {
+  padding:20px;
+  svg.highcharts-root {
+    font-family: 'Montserrat' !important;
+  }
+}
