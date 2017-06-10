@@ -21,7 +21,7 @@ export default Ember.Component.extend({
   chartData: [
     {
       
-      data: [320,400,203]
+      data: [30,30,40]
     },
   ],
 });
