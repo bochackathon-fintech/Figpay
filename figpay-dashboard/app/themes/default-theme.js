@@ -3,8 +3,9 @@
  */
 export default {
   colors: [
-    '#258be2',
-    '#666666',
+    '#649C43',
+    '#4E124F',
+    '#2D362F',
     '#f45b5b',
     '#8085e9',
     '#8d4654',
@@ -18,9 +19,9 @@ export default {
     '#aaeeee'
   ],
   chart: {
-    backgroundColor: "red",
+    backgroundColor: "white",
     style: {
-      fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+      fontFamily: "'Montserrat', 'Helvetica', 'Arial', sans-serif"
     }
   },
   title: {
@@ -43,7 +44,7 @@ export default {
   },
   legend: {
     itemStyle: {
-      fontWeight: 'bold',
+      fontWeight: '400',
       fontSize: '14px'
     }
   },
@@ -51,7 +52,7 @@ export default {
     labels: {
       style: {
         color: '#6e6e70',
-        fontSize: '16px'
+        fontSize: '14px'
       }
     },
     title: {
@@ -64,7 +65,7 @@ export default {
     labels: {
       style: {
         color: '#6e6e70',
-        fontSize: '16px'
+        fontSize: '14px'
       }
     },
     title: {
@@ -75,10 +76,10 @@ export default {
   },
   plotOptions: {
     series: {
-      shadow: true
+      shadow: false
     },
     candlestick: {
-      lineColor: '#404048'
+      lineColor: '#4E124F'
     }
   },
   navigator: {
