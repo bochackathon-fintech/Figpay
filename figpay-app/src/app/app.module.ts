@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { ErrorHandler, NgModule } from '@angular/core'
+import { Http, HttpModule} from '@angular/http'
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 
@@ -10,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar'
 import { MyApp } from './app.component'
 
 import { HomePage } from '../pages/home/home'
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { HomePage } from '../pages/home/home'
     HomePage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -27,6 +30,7 @@ import { HomePage } from '../pages/home/home'
   ],
   providers: [
     StatusBar,
+    ApiProvider,
     SplashScreen,
     CameraPreview,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
