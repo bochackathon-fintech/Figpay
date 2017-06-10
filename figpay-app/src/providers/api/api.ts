@@ -18,7 +18,8 @@ export class ApiProvider {
       this.recognize(data)
         .then((res:any) => {
           console.log('[ApiProvider] recognize', res)
-          return this.makePayment(Object.assign(data, JSON.parse(res.body)))
+
+          return this.makePayment(Object.assign(data, res.data))
         })
         .then(resolve)
         .catch(reject)
@@ -33,6 +34,7 @@ export class ApiProvider {
       this.http
         .post(`${API_BASE_URL}/recognize`, postData, this.getHeaders())
         .first()
+        .map((res) => res.json())
         .subscribe(resolve, reject)
     })
   }
@@ -49,6 +51,7 @@ export class ApiProvider {
       this.http
         .post(`${API_BASE_URL}/payments/vendors/`, postData, this.getHeaders())
         .first()
+        .map((res) => res.json())
         .subscribe(resolve, reject)
     })
   }

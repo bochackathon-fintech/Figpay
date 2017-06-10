@@ -12,11 +12,13 @@ import { MyApp } from './app.component'
 
 import { HomePage } from '../pages/home/home'
 import { ApiProvider } from '../providers/api/api';
+import { PinModalComponent } from '../components/pin-modal/pin-modal';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    PinModalComponent
   ],
   imports: [
     HttpModule,
@@ -26,7 +28,8 @@ import { ApiProvider } from '../providers/api/api';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    PinModalComponent
   ],
   providers: [
     StatusBar,
