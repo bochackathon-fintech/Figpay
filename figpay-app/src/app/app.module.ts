@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { ErrorHandler, NgModule } from '@angular/core'
-import { Http, HttpModule} from '@angular/http'
+import { HttpModule} from '@angular/http'
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 
@@ -12,11 +12,13 @@ import { MyApp } from './app.component'
 
 import { HomePage } from '../pages/home/home'
 import { ApiProvider } from '../providers/api/api';
+import { PinModalComponent } from '../components/pin-modal/pin-modal';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    PinModalComponent
   ],
   imports: [
     HttpModule,
@@ -26,7 +28,8 @@ import { ApiProvider } from '../providers/api/api';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    PinModalComponent
   ],
   providers: [
     StatusBar,

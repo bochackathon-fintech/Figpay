@@ -21,13 +21,14 @@ $purple: #4E124F;
 
 @keyframes justArrived {
   0% {
-    background-color:#f9f9f9;
+    //background-color:#f9f9f9;
+    background-color:red;
   }
   100% {
     background-color:transparent;
   }
 }
-
+.card{margin:0;}
 .card.card-plain {
   .card-header {
     background-color: $green;
@@ -38,7 +39,7 @@ $purple: #4E124F;
     font-size: 16px;
   }
   tr.just-arrived{
-    animation: 1s ease-out 0s 1 justArrived;
+    animation: 5s ease-out 0s 1 justArrived;
   }
 }
 
@@ -52,3 +53,6 @@ body {
     font-family: 'Montserrat' !important;
   }
 }
+.main-panel>.content{margin-top:0px;}
+
+.ct-chart{font-size:20px;}

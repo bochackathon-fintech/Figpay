@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'dashboard-ember',
     environment: environment,
@@ -20,13 +20,23 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.APP.API_HOST = 'http://localhost:8000';
+    ENV.APP.API_NAMESPACE = 'api';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
-
+  if (environment === 'stage') {
+    ENV.APP.API_HOST = 'http://figbackend.hosted.pixelactions.com';
+    ENV.APP.API_NAMESPACE = 'api';
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+  }
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
@@ -41,6 +51,9 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+  ENV['ember-simple-auth'] = {
+    crossOriginWhitelist: ['*'],
+  };
 
   return ENV;
 };

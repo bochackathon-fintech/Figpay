@@ -20,11 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '(_90(@sdi$$x92^yqk5a@+w*yxf7avhkrl5&a6r4ry*2*=)t0m'
-
+SERVER_TYPE = os.environ.get('SERVER_TYPE', 'Not Set')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if SERVER_TYPE == 'PROD':
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.ngrok.io','127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '.ngrok.io','.pixelactions.com']
 
 # Application definition
 
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -122,8 +126,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 MEDIA_ROOT = 'media'
 MEDIA_URL_LOCAL = "/media/"
-MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
-#MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
+if SERVER_TYPE == 'PROD':
+    STATIC_ROOT = '/home/kyris/webapps/figbackend_static'
+    MEDIA_ROOT = '/home/kyris/webapps/figbackend_media'
+    MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
+else:
+    MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
 
 EXPORTER_FRONT_APPLICATION_PATH = '../figpay_dashboard'
 EXPORTER_ROUTER_PATH = 'figpay_backend.urls.router'
@@ -140,3 +148,5 @@ KAIROS_APP_KEY = '2b8d01b59a1237849c901e88daab667d'
 
 
 APPEND_SLASH=False
+
+CORS_ORIGIN_ALLOW_ALL = True

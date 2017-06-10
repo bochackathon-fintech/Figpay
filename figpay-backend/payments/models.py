@@ -80,3 +80,7 @@ class Payment(models.Model):
 
         except Exception as e:
             print("[Errno {0}] {1}".format(e.errno, e.strerror))
+
+    class Meta:
+        ordering = ['-created_on']
+
