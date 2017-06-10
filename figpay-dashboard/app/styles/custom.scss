@@ -27,7 +27,7 @@ $purple: #4E124F;
     background-color:transparent;
   }
 }
-
+.card{margin:0;}
 .card.card-plain {
   .card-header {
     background-color: $green;
@@ -52,3 +52,6 @@ body {
     font-family: 'Montserrat' !important;
   }
 }
+.main-panel>.content{margin-top:0px;}
+
+.ct-chart{font-size:20px;}
