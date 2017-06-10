@@ -8,6 +8,8 @@ import {
 import { WS_SERVER_URL } from '../../constants'
 
 import { ApiProvider } from '../../providers/api/api'
+import {PinModalComponent} from "../../components/pin-modal/pin-modal";
+import {ModalController} from "ionic-angular";
 
 @Component({
   selector: 'page-home',
@@ -21,11 +23,23 @@ export class HomePage {
 
   constructor(
     private cameraPreview: CameraPreview,
-    private apiProvider: ApiProvider
+    private apiProvider: ApiProvider,
+    private modalController: ModalController
   ) {}
 
   ionViewDidLoad () {
-    this.initSocket()
+    const modalData = {
+      name: 'Giakoumis',
+      amount: 3.69
+    }
+    const modal = this.modalController.create(PinModalComponent, modalData)
+    modal.onDidDismiss(onDismiss)
+    modal.present()
+    // this.initSocket()
+
+    function onDismiss (res) {
+      console.log('[PinModalComponent] onDismiss', res)
+    }
   }
 
   getContentStyle () {
