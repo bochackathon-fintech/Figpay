@@ -21,47 +21,43 @@
   <div class="dialpad">
     <ion-row>
       <ion-col>
-        <button ion-button outline class="dialpad__key">1</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(1)">1</button>
       </ion-col>
       <ion-col>
-        <button ion-button outline class="dialpad__key">2</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(2)">2</button>
       </ion-col>
       <ion-col>
-        <button ion-button outline class="dialpad__key">3</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(3)">3</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button outline class="dialpad__key">4</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(4)">4</button>
       </ion-col>
       <ion-col>
-        <button ion-button outline class="dialpad__key">5</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(5)">5</button>
       </ion-col>
       <ion-col>
-        <button ion-button outline class="dialpad__key">6</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(6)">6</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button outline class="dialpad__key">7</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(7)">7</button>
       </ion-col>
       <ion-col>
-        <button ion-button outline class="dialpad__key">8</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(8)">8</button>
       </ion-col>
       <ion-col>
-        <button ion-button outline class="dialpad__key">9</button>
+        <button ion-button outline class="dialpad__key" (click)="dial(9)">9</button>
       </ion-col>
     </ion-row>
     <ion-row>
+      <ion-col></ion-col>
       <ion-col>
-
+        <button ion-button outline class="dialpad__key" (click)="dial(0)">0</button>
       </ion-col>
-      <ion-col>
-        <button ion-button outline class="dialpad__key">0</button>
-      </ion-col>
-      <ion-col>
-
-      </ion-col>
+      <ion-col></ion-col>
     </ion-row>
   </div>
 </ion-content>
