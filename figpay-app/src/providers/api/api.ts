@@ -69,7 +69,7 @@ export class ApiProvider {
         description: 'KEO 1/2 pint'
       }
       this.http
-        .post(`${API_BASE_URL}/payments/vendors/`, postData, this.getHeaders())
+        .post(`${API_BASE_URL}/vendors/payments/`, postData, this.getHeaders())
         .first()
         .map((res) => res.json())
         .subscribe(resolve, reject)

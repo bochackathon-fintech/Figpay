@@ -1,4 +1,4 @@
-$empty-space: 50px;
+$empty-space: 10px;
 
 pin-modal {
   ion-content {
@@ -8,7 +8,10 @@ pin-modal {
 
     .scroll-content {
       padding: 20px;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
 
       .password {
         width: 60%;
@@ -23,12 +26,8 @@ pin-modal {
 
       .dialpad {
         text-align: center;
-        align-self: center;
-        justify-self: center;
 
         margin: 25px auto 0;
-
-        width: 50%;
 
         .col {
           padding: 10px;
