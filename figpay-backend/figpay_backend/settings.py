@@ -122,7 +122,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 MEDIA_ROOT = 'media'
 MEDIA_URL_LOCAL = "/media/"
-MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
+MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
+#MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
 
 EXPORTER_FRONT_APPLICATION_PATH = '../figpay_dashboard'
 EXPORTER_ROUTER_PATH = 'figpay_backend.urls.router'
