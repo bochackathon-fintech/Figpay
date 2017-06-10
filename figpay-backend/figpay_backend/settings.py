@@ -24,7 +24,7 @@ SECRET_KEY = '(_90(@sdi$$x92^yqk5a@+w*yxf7avhkrl5&a6r4ry*2*=)t0m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.ngrok.io']
+ALLOWED_HOSTS = ['localhost', '.ngrok.io','.pixelactions.com']
 
 # Application definition
 
