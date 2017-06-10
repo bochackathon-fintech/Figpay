@@ -24,3 +24,6 @@ class Payment(models.Model):
 
     def __str__(self):
         return str(self.created_on)
+
+    class Meta:
+        ordering = ['-created_on']

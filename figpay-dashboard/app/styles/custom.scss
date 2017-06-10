@@ -21,7 +21,8 @@ $purple: #4E124F;
 
 @keyframes justArrived {
   0% {
-    background-color:#f9f9f9;
+    //background-color:#f9f9f9;
+    background-color:red;
   }
   100% {
     background-color:transparent;
@@ -38,7 +39,7 @@ $purple: #4E124F;
     font-size: 16px;
   }
   tr.just-arrived{
-    animation: 1s ease-out 0s 1 justArrived;
+    animation: 5s ease-out 0s 1 justArrived;
   }
 }
 

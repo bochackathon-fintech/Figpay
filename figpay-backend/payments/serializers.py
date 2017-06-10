@@ -5,7 +5,7 @@ from .models import Payment
 class ConsumerPaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = ['created_on', 'pos', 'consumer', 'amount', 'description']
+        fields = ['id','created_on', 'pos', 'consumer', 'amount', 'description']
 
 
 class VendorPaymentSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class VendorPaymentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Payment
-        fields = ['created_on', 'pos', 'consumer', 'pin', 'amount', 'description']
+        fields = ['id','created_on', 'pos', 'consumer', 'pin', 'amount', 'description']
 
     def create(self, validated_data):
         pin = validated_data.pop('pin')
