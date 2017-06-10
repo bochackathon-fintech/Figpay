@@ -1,0 +1,9 @@
+<ion-content padding [ngStyle]="getContentStyle()">
+  <!--<div class="overlay"></div>-->
+
+  <button class="pay" ion-button color="dark" (click)="pay()" *ngIf="cameraPreviewEnabled">
+    Fig <br> €{{figValue}}
+  </button>
+
+  <img class="logo" src="assets/figpay.png" alt="Fig Pay logo">
+</ion-content>

@@ -1,0 +1,1 @@
+export const WS_SERVER_URL = 'ws://wf-31-170-122-44.webfaction.com:28390'
