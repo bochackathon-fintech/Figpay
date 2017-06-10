@@ -23,9 +23,9 @@ SECRET_KEY = '(_90(@sdi$$x92^yqk5a@+w*yxf7avhkrl5&a6r4ry*2*=)t0m'
 SERVER_TYPE = os.environ.get('SERVER_TYPE', 'Not Set')
 # SECURITY WARNING: don't run with debug turned on in production!
 if SERVER_TYPE == 'PROD':
-    DEBUG = True
-else:
     DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '.ngrok.io','.pixelactions.com']
 
