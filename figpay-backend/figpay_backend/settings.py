@@ -127,7 +127,7 @@ MEDIA_ROOT = 'media'
 MEDIA_URL_LOCAL = "/media/"
 if SERVER_TYPE == 'PROD':
     STATIC_ROOT = '/home/kyris/webapps/figbackend_static'
-    MEDIA_ROOT = '/home/kyris/webapps/figbackend_root'
+    MEDIA_ROOT = '/home/kyris/webapps/figbackend_media'
     MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
 else:
     MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
