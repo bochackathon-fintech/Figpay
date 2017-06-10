@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import defaultTheme from '../../themes/default-theme';
 export default Ember.Component.extend({
   chartOptions: {
     chart: {
@@ -17,11 +17,11 @@ export default Ember.Component.extend({
       }
     }
   },
-  
+  theme:defaultTheme,
   chartData: [
     {
       
-      data: [320,400,203]
+      data: [30,30,40]
     },
   ],
 });
