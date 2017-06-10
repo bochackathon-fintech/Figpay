@@ -6,6 +6,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import http.client, urllib.request, urllib.parse, urllib.error, base64
+
 from rest_framework.authtoken.models import Token
 
 
@@ -14,7 +16,7 @@ class AbstractProfile(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
-
+    boc_acc = models.CharField(max_length=255, blank=True)
     # ptype = models.CharField(max_length=10, choices=USER_TYPES)
     class Meta:
         abstract = True
@@ -22,6 +24,34 @@ class AbstractProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_payments(self, request, queryset):
+        headers = {
+            # Request headers
+            'Auth-Provider-Name': '01040951662400',
+            'Auth-ID': '123456789',
+            'obp_sort_by': '',
+            'obp_sort_direction': '',
+            'obp_limit': '',
+            'obp_offset': '',
+            'obp_from_date': '',
+            'obp_to_date': '',
+            'Ocp-Apim-Subscription-Key': 'b393070ac74d450f93a2d0859b824d33',
+        }
+
+        params = urllib.parse.urlencode({
+            # Request parameters
+            'subscription-key': 'b393070ac74d450f93a2d0859b824d33',
+        })
+
+        try:
+            conn = http.client.HTTPConnection('api.bocapi.net')
+            conn.request("GET", "/v1/api/banks/bda8eb884efcef7082792d45/accounts/bda8eb884efcea209b2a6240/5710bba5d42604e4072d1e92/transactions?%s" % params, "{body}", headers)
+            response = conn.getresponse()
+            data = response.read()
+            print(data)
+            conn.close()
+        except Exception as e:
+            print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
 class Consumer(AbstractProfile):
     pin = models.IntegerField()
@@ -44,6 +74,7 @@ class Consumer(AbstractProfile):
 
     def __str__(self):
         return "(Consumer) %s " % self.user.username
+
 
     @property
     def fullname(self):
