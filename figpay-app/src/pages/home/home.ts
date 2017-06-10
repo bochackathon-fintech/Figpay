@@ -11,9 +11,10 @@ import {WS_SERVER_URL} from "../../constants";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  public figValue = 0
+  public price = 0
   public cameraPreviewEnabled = false
   private ws
+
 
   constructor(
     private cameraPreview: CameraPreview
@@ -53,7 +54,9 @@ export class HomePage {
     }
   }
 
-  private startCameraPreview (price) {
+  private startCameraPreview () {
+    console.log('[HomePage] starting cameraPreview')
+
     const cameraPreviewOpts: CameraPreviewOptions = {
       x: 0,
       y: 0,
@@ -72,7 +75,6 @@ export class HomePage {
         (res) => {
           console.log('[HomePage] cameraPreview startCamera', res)
           this.cameraPreviewEnabled = true
-          this.figValue = price
         },
         (err) => {
           console.error('[HomePage] cameraPreview startCamera', err)
@@ -80,6 +82,8 @@ export class HomePage {
   }
 
   private initSocket () {
+    console.log('[HomePage] initSocket')
+
     this.ws = new WebSocket(WS_SERVER_URL)
     this.ws.onopen = this.wsOnOpen.bind(this)
     this.ws.onmessage = this.wsOnMessage.bind(this)
@@ -96,8 +100,11 @@ export class HomePage {
 
     res = JSON.parse(res.data)
 
+    console.log('[HomePage] command', res)
+
     if (res.command === 'fig') {
-      this.startCameraPreview.bind(this, parseFloat(res.value))
+      this.price = res.value
+      this.startCameraPreview.bind(this)
     }
   }
 
@@ -108,6 +115,6 @@ export class HomePage {
   private wsOnClose (code, message) {
     console.log('[HomePage] wsOnClose', code, message)
 
-    setTimeout(this.initSocket, 2000)
+    setTimeout(this.initSocket.bind(this), 5000)
   }
 }

@@ -1,35 +1,57 @@
-const prompt = require('prompt')
-const WebSocketServer = require('uws').Server
+const http = require('http')
 
-const port = process.env.PORT || 28390
+const express = require('express')
+const WebSocket = require('uws')
 
-const wss = new WebSocketServer({ port })
+const serverPort = process.env.SERVER_PORT || 18881
 
-prompt.message = 'FigPay'
+const app = express()
+const server = http.createServer(app)
+const wss = new WebSocket.Server({ server })
 
-console.log(`Server listening on ${port}`)
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+
+app.get('/', (req, res) => res.send({
+  message: 'Fig Pay POS'
+}))
+
+app.get('/pay/:value', (req, res) => {
+  console.log('Pay request', req.params)
+
+  if (!(req.params && req.params.value)) return res.sendStatus(400)
+
+  wss.broadcast(JSON.stringify({
+    command: 'fig',
+    value: parseFloat(req.params.value)
+  }))
+
+  res.sendStatus(200)
+})
+
 wss.on('connection', (ws) => {
-  ws.on('message', onMessage)
+  console.log('Client connected')
 
-  askCommand()
-
-  function onMessage (message) {
+  ws.on('message', (message) => {
     console.log(message)
-  }
+  })
 
-  function askCommand () {
-    prompt.start()
-    prompt.get(['value'], (err, result) => {
-      if (err) console.error(err)
+  ws.send(JSON.stringify({
+    command: 'welcome'
+  }))
+})
 
-      console.log(result)
+server.listen(serverPort, () => {
+  console.log(`Server listening on ${serverPort}`)
 
-      ws.send(JSON.stringify({
-        command: 'fig',
-        value: result.value
-      }))
-
-      askCommand()
+  wss.broadcast = function broadcast (data) {
+    wss.clients.forEach(function each (client) {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(data)
+      }
     })
   }
 })
