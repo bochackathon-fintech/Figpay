@@ -22,7 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(_90(@sdi$$x92^yqk5a@+w*yxf7avhkrl5&a6r4ry*2*=)t0m'
 SERVER_TYPE = os.environ.get('SERVER_TYPE', 'Not Set')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if SERVER_TYPE == 'PROD':
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '.ngrok.io','.pixelactions.com']
 
