@@ -18,6 +18,29 @@ header {
 .logo {
   max-width: 150px;
 }
+.payment {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.payment input {
+  font-size: 40px;
+  text-align: center;
+  width: 150px;
+  box-shadow: none;
+  border: 1px solid;
+  padding: 0;
+  margin: 0;
+}
+
+.payment button {
+  font-size: 20px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 25px;
+}
     </style>
   </head>
   <body>
@@ -26,17 +49,17 @@ header {
     </header>
 
     <div class="payment">
-      <input class="amount" type="number"/>
-      <button onclick="pay()">Pay</button>
+      <input class="amount" type="number" value="3.69" />
+      <button onclick="pay()">Request</button>
     </div>
     <script>
 function pay () {
   const amount = document.querySelector('.amount').value
-  
-  const xmlhttp = new XMLHttpRequest()
-  xmlhttp.open('POST', '/api/pay')
-  xmlhttp.setRequestHeader('Content-Type', 'application/json')
-  xmlhttp.send(JSON.stringify({ amount }))
+
+    const xmlhttp = new XMLHttpRequest()
+    xmlhttp.open('POST', '/api/pay')
+    xmlhttp.setRequestHeader('Content-Type', 'application/json')
+    xmlhttp.send(JSON.stringify({ amount }))
 }
     </script>
   </body>

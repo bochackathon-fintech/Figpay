@@ -16,9 +16,9 @@ export class ApiProvider {
   pay (data) {
     return new Promise((resolve, reject) => {
       this.recognize(data)
-        .then((res) => {
+        .then((res:any) => {
           console.log('[ApiProvider] recognize', res)
-          return this.makePayment(Object.assign(data, res))
+          return this.makePayment(Object.assign(data, JSON.parse(res.body)))
         })
         .then(resolve)
         .catch(reject)
@@ -55,6 +55,8 @@ export class ApiProvider {
 
   private getHeaders () {
     let headers = new Headers()
+
+    headers.append('Content-Type', 'application/json')
 
     headers.append('Authorization', 'Token 753400d7e1b1a40d36b78a23fab3c5775799dae9')
 
