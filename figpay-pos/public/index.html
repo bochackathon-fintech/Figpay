@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>FigPay POS</title>
+
+    <style>
+body {
+  margin: 0;
+}
+header {
+  background-color: #4E124F;
+  padding: 5px;
+}
+.logo {
+  max-width: 150px;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="http://paywithfig.com/img/logo-white.png" alt="logo">
+    </header>
+
+    <div class="payment">
+      <input class="amount" type="number"/>
+      <button onclick="pay()">Pay</button>
+    </div>
+    <script>
+function pay () {
+  const amount = document.querySelector('.amount').value
+  
+  const xmlhttp = new XMLHttpRequest()
+  xmlhttp.open('POST', '/api/pay')
+  xmlhttp.setRequestHeader('Content-Type', 'application/json')
+  xmlhttp.send(JSON.stringify({ amount }))
+}
+    </script>
+  </body>
+</html>
