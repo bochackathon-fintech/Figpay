@@ -1,6 +1,7 @@
 import Ember from 'ember';
-
+import defaultTheme from '../../themes/default-theme';
 export default Ember.Component.extend({
+  
   chartOptions: {
     chart: {
       type: 'bar'
@@ -17,7 +18,7 @@ export default Ember.Component.extend({
       }
     }
   },
-  
+  theme: defaultTheme,
   chartData: [
     {
       
