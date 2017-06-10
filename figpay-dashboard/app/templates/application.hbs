@@ -8,33 +8,38 @@
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
-          {{#link-to 'index' tagName='li'}}
-            <a>
-              <p>Dashboard</p>
-            </a>
-          {{/link-to}}
-          {{#link-to 'history' tagName='li'}}
-            <a>
-              <p>History</p>
-            </a>
-          {{/link-to}}
-          {{#link-to 'analytics' tagName='li'}}
-            <a>
-              <p>Analytics</p>
-            </a>
-          {{/link-to}}
-          {{#link-to 'account' tagName='li'}}
-            <a>
-              <p>Account</p>
-            </a>
-          {{/link-to}}
-          <li>
-            <a href="#">
-              <p>Signout</p>
-            </a>
-          </li>
-        </ul>
+
+
+        {{#if session.isAuthenticated}}
+
+          <ul class="nav">
+            {{#link-to 'index' tagName='li'}}
+              <a>
+                <p>Dashboard</p>
+              </a>
+            {{/link-to}}
+            {{#link-to 'history' tagName='li'}}
+              <a>
+                <p>History</p>
+              </a>
+            {{/link-to}}
+            {{#link-to 'analytics' tagName='li'}}
+              <a>
+                <p>Analytics</p>
+              </a>
+            {{/link-to}}
+            {{#link-to 'account' tagName='li'}}
+              <a>
+                <p>Account</p>
+              </a>
+            {{/link-to}}
+            <li>
+              <a href="#" {{action 'invalidateSession'}}>
+                <p>Signout</p>
+              </a>
+            </li>
+          </ul>
+        {{/if}}
       </div>
     </div>
     <div class="col-sm-12 col-md-12 main">

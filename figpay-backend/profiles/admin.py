@@ -19,6 +19,5 @@ class ConsumerAdmin(admin.ModelAdmin):
 
     enroll_faces.short_description = "Enroll Faces to Face recognition API"
 
-
 admin.site.register(Consumer, ConsumerAdmin)
 admin.site.register(Vendor)

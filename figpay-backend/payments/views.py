@@ -21,6 +21,8 @@ class ConsumerPaymentViewset(viewsets.ReadOnlyModelViewSet):
         return self.request.user.consumer.payments.all()
 
 
+
+
 class VendorPaymentViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin,
                            viewsets.GenericViewSet):
     serializer_class = VendorPaymentSerializer
@@ -38,6 +40,9 @@ class VendorPaymentViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixin
         if pin != str(consumer.pin):
             return Response({'success': False, 'error': 'Bad Authorization Parameters'},
                             status=status.HTTP_403_FORBIDDEN)
+
+        #transaction
+
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

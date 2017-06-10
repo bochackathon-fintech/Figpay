@@ -28,8 +28,8 @@ from payments.views import ConsumerPaymentViewset, VendorPaymentViewset
 router = DefaultRouter()
 # router.register(endpoint=ConsumerPaymentEndpoint, url='payments/consumers')
 # router.register(endpoint=VendorPaymentEndpoint, url='payments/vendors')
-router.register("consumers/payments", ConsumerPaymentViewset, base_name='consumer_payments')
-router.register("vendors/payments", VendorPaymentViewset, base_name='vendor_payments')
+router.register("consumer/payments", ConsumerPaymentViewset, base_name='consumer_payments')
+router.register("vendor/payments", VendorPaymentViewset, base_name='vendor_payments')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
