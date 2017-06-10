@@ -1,6 +1,7 @@
 const http = require('http')
 
 const express = require('express')
+const bodyParser = require('body-parser')
 const WebSocket = require('uws')
 
 const serverPort = process.env.SERVER_PORT || 18881
@@ -8,6 +9,8 @@ const serverPort = process.env.SERVER_PORT || 18881
 const app = express()
 const server = http.createServer(app)
 const wss = new WebSocket.Server({ server })
+
+app.use(bodyParser.json())
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -24,11 +27,11 @@ app.get('/api', (req, res) => res.send({
 app.post('/api/pay', (req, res) => {
   console.log('Pay request', req.body)
 
-  if (!req.body.value)) return res.sendStatus(400)
+  if (!req.body.amount) return res.sendStatus(400)
 
   wss.broadcast(JSON.stringify({
     command: 'fig',
-    value: req.body.value
+    value: req.body.amount
   }))
 
   res.sendStatus(200)

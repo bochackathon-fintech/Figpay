@@ -1,0 +1,16 @@
+certifi==2017.4.17
+chardet==3.0.4
+Django==1.10.7
+django-cors-headers==2.1.0
+django-extra-fields==0.9
+django-filter==1.0.4
+djangorestframework==3.6.3
+drf-schema-adapter==0.9.26
+idna==2.5
+Inflector==2.0.11
+kairos-face-recognition-lib==0.1.0
+olefile==0.44
+Pillow==4.1.1
+pytz==2017.2
+requests==2.17.3
+urllib3==1.21.1
