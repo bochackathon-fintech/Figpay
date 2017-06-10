@@ -120,3 +120,11 @@ typings/
 # Directories potentially created on remote AFP share
 
 # End of https://www.gitignore.io/api/osx,node,macos,ember
+
+
+figpay-backend/media/
+figpay-backend/static/
+figpay-backend/.idea/
+figpay-backend/db.sqlite3
+*.pyc
+__pycache__/
