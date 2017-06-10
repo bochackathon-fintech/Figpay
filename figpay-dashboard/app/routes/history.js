@@ -10,7 +10,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     let _this = this;
     const PollingObj = Ember.Object.extend(Pollster, {
       interval: function () {
-        return 5000; // Time between polls (in ms)
+        return 2000; // Time between polls (in ms)
       }.property().readOnly()
     });
     let pollster = PollingObj.create();

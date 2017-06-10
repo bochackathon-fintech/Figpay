@@ -18,7 +18,9 @@ module.exports = function (environment) {
       // when it is created
     }
   };
-
+  ENV['ember-simple-auth'] = {
+    crossOriginWhitelist: ['*'],
+  };
   if (environment === 'development') {
     ENV.APP.API_HOST = 'http://localhost:8000';
     ENV.APP.API_NAMESPACE = 'api';
@@ -31,6 +33,20 @@ module.exports = function (environment) {
   if (environment === 'stage') {
     ENV.APP.API_HOST = 'http://figbackend.hosted.pixelactions.com';
     ENV.APP.API_NAMESPACE = 'api';
+    ENV['ember-simple-auth'] = {
+      crossOriginWhitelist: ['*'],
+      authorizer: 'authorizer:token'
+    };
+    ENV['ember-simple-auth-token'] = {
+      serverTokenEndpoint: '/api/token-auth/',
+      identificationField: 'username',
+      passwordField: 'password',
+      tokenPropertyName: 'token',
+      refreshTokenPropertyName: 'refresh_token',
+      authorizationPrefix: 'Token ',
+      authorizationHeaderName: 'Authorization',
+      headers: {},
+    };
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -51,9 +67,7 @@ module.exports = function (environment) {
   if (environment === 'production') {
 
   }
-  ENV['ember-simple-auth'] = {
-    crossOriginWhitelist: ['*'],
-  };
+
 
   return ENV;
 };
