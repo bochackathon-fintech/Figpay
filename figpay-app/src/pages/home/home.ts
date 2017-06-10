@@ -1,15 +1,15 @@
 import { Component } from '@angular/core'
 
+import { ToastController } from 'ionic-angular'
+
 import {
-  CameraPreview, CameraPreviewOptions,
-  CameraPreviewPictureOptions
+CameraPreview, CameraPreviewOptions,
+CameraPreviewPictureOptions
 } from '@ionic-native/camera-preview'
 
 import { WS_SERVER_URL } from '../../constants'
 
 import { ApiProvider } from '../../providers/api/api'
-import {PinModalComponent} from "../../components/pin-modal/pin-modal";
-import {ModalController} from "ionic-angular";
 
 @Component({
   selector: 'page-home',
@@ -24,7 +24,7 @@ export class HomePage {
   constructor(
     private cameraPreview: CameraPreview,
     private apiProvider: ApiProvider,
-    private modalController: ModalController
+    private toastController: ToastController
   ) {}
 
   ionViewDidLoad () {
@@ -69,9 +69,25 @@ export class HomePage {
         console.log('[HomePage] cameraPreview stopCamera', res)
 
         this.cameraPreviewEnabled = false
+
+        this.toastController
+          .create({
+            message: 'Success!',
+            duration: 3000,
+            position: 'middle'
+          })
+          .present()
       })
       .catch((err) => {
         console.error('[HomePage] cameraPreview stopCamera', err)
+
+        this.toastController
+          .create({
+            message: 'Fail',
+            duration: 3000,
+            position: 'middle'
+          })
+          .present()
       })
   }
 
