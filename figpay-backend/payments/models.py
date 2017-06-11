@@ -100,7 +100,7 @@ class Payment(models.Model):
             access_token = settings.DEMO_FB_ACCESS_TOKEN
             post_url = "https://graph.facebook.com/v2.6/me/messages?access_token=%s" % access_token
             try:
-                r = requests.post(post_url, data=json.dumps(data), )
+                r = requests.post(post_url, data=json.dumps(data))
             except:
                 pass
 
