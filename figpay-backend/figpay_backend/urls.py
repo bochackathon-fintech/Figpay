@@ -24,6 +24,7 @@ from facing.views import UploadList
 
 from payments.endpoints import ConsumerPaymentEndpoint, VendorPaymentEndpoint
 from payments.views import ConsumerPaymentViewset, VendorPaymentViewset
+from signup.views import signup, SignupSuccess
 
 router = DefaultRouter()
 # router.register(endpoint=ConsumerPaymentEndpoint, url='payments/consumers')
@@ -36,6 +37,9 @@ urlpatterns = [
     url(r'^api/token-auth/', views.obtain_auth_token),
     url(r'^api/', include(router.urls)),
     url(r'^api/recognize', UploadList.as_view()),
+
+    url(r'^signup/success$', SignupSuccess.as_view(), name='signup-success'),
+    url(r'^$', signup, name='signup'),
 ]
 
 if settings.DEBUG:
@@ -44,8 +48,6 @@ if settings.DEBUG:
                                                                        document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'FigPay Backend'
-
-
 
 import kairos_face
 
