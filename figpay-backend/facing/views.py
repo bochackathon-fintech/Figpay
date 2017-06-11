@@ -92,4 +92,5 @@ from rest_framework.decorators import api_view
 @api_view(['GET', 'POST'])
 def chatbot_connect(request):
     print(request)
+    print(request.data)
     return Response({"message": "Hello, world!"})
