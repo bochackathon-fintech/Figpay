@@ -5,6 +5,9 @@ from django.db import models
 import uuid
 from profiles.models import Consumer, Vendor
 import http.client, urllib.request, urllib.parse, urllib.error, base64
+from django.conf import settings
+import requests
+
 
 class PointOfSale(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -16,14 +19,13 @@ class PointOfSale(models.Model):
 
 
 class Payment(models.Model):
-
     VISA = 'vi'
     BOCAPI = 'ap'
 
     TYPE_CHOICES = (
-            (VISA, 'Visa'),
-            (BOCAPI, 'BoC API'),
-        )
+        (VISA, 'Visa'),
+        (BOCAPI, 'BoC API'),
+    )
 
     created_on = models.DateTimeField(auto_now_add=True)
     pos = models.ForeignKey(PointOfSale, related_name='payments')
@@ -34,27 +36,27 @@ class Payment(models.Model):
     is_fulfilled = models.BooleanField(blank=True, default=False)
     response = models.TextField(blank=True)
     type = models.CharField(
-            max_length=2,
-            choices=TYPE_CHOICES,
-            default=BOCAPI,
-        )
+        max_length=2,
+        choices=TYPE_CHOICES,
+        default=BOCAPI,
+    )
 
     def __str__(self):
         return str(self.created_on)
 
     def send_payment(self):
         headers = {
-                # Request headers
-                'Track-ID': '111111111111111111111111',
-                'Auth-Provider-Name': '01040951662400',
-                'Auth-ID': '123456789',
-                'Content-Type': 'application/json',
+            # Request headers
+            'Track-ID': '111111111111111111111111',
+            'Auth-Provider-Name': '01040951662400',
+            'Auth-ID': '123456789',
+            'Content-Type': 'application/json',
         }
 
         params = json.dumps({
 
             'description': "EMVASMA 12 EUROS",
-             "challenge_type": "string",
+            "challenge_type": "string",
             'from': {
                 'account_id': 'bda8eb884efcea209b2a6240',
                 'bank_id': 'bda8eb884efcef7082792d45'
@@ -63,16 +65,18 @@ class Payment(models.Model):
                 'account_id': 'bda8eb884efcea209b2a62a5',
                 'bank_id': 'bda8eb884efcef7082792d45'
             },
-             "value": {
-               "currency": 'EUR',
-               "amount": 12.00
-             }
+            "value": {
+                "currency": 'EUR',
+                "amount": 12.00
+            }
         })
 
         try:
             conn = http.client.HTTPConnection('api.bocapi.net')
-            #http://api.bocapi.net/v1/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/make-transaction[?subscription-key]
-            conn.request("POST", "/v1/api/banks/bda8eb884efcef7082792d45/accounts/bda8eb884efcea209b2a6240/make-transaction?subscription-key=dc4d6d144a9c41d5be483dd563c5a21d", params, headers)
+            # http://api.bocapi.net/v1/api/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/make-transaction[?subscription-key]
+            conn.request("POST",
+                         "/v1/api/banks/bda8eb884efcef7082792d45/accounts/bda8eb884efcea209b2a6240/make-transaction?subscription-key=dc4d6d144a9c41d5be483dd563c5a21d",
+                         params, headers)
             response = conn.getresponse()
             data = response.read()
             print(data)
@@ -81,6 +85,24 @@ class Payment(models.Model):
         except Exception as e:
             print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
+    def notify_for_checking_on_fb(self):
+        recipient_id = self.consumer.facebook_id
+        if recipient_id:
+            text = "Hello %s! Would you like to checking to our store?" % self.consumer.first_name
+            data = {
+                "recipient": {
+                    "id": "1566921459985175"
+                },
+                "message": {
+                    "text": text
+                }
+            }
+            access_token = settings.DEMO_FB_ACCESS_TOKEN
+            post_url = "https://graph.facebook.com/v2.6/me/messages?access_token=%s" % access_token
+            try:
+                r = requests.post(post_url, data=json.dumps(data), )
+            except:
+                pass
+
     class Meta:
         ordering = ['-created_on']
-

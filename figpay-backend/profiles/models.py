@@ -17,6 +17,7 @@ class AbstractProfile(models.Model):
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
     boc_acc = models.CharField(max_length=255, blank=True)
+    facebook_id = models.CharField(max_length=255, blank=True)
     # ptype = models.CharField(max_length=10, choices=USER_TYPES)
     class Meta:
         abstract = True

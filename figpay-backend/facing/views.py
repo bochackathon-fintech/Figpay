@@ -85,3 +85,11 @@ class UploadList(APIView):
             status_to_send = status.HTTP_400_BAD_REQUEST
 
         return Response(json_data, status=status_to_send, content_type="application/json")
+
+
+from rest_framework.decorators import api_view
+
+@api_view(['GET', 'POST'])
+def chatbot_connect(request):
+    print(request)
+    return Response({"message": "Hello, world!"})

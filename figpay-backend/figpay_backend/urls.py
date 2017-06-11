@@ -25,7 +25,7 @@ from facing.views import UploadList
 from payments.endpoints import ConsumerPaymentEndpoint, VendorPaymentEndpoint
 from payments.views import ConsumerPaymentViewset, VendorPaymentViewset
 from signup.views import signup, SignupSuccess
-
+from facing.views import chatbot_connect
 router = DefaultRouter()
 # router.register(endpoint=ConsumerPaymentEndpoint, url='payments/consumers')
 # router.register(endpoint=VendorPaymentEndpoint, url='payments/vendors')
@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^api/token-auth/', views.obtain_auth_token),
     url(r'^api/', include(router.urls)),
     url(r'^api/recognize', UploadList.as_view()),
-
+    url(r'^chatbot/connect', chatbot_connect),
     url(r'^signup/success$', SignupSuccess.as_view(), name='signup-success'),
     url(r'^$', signup, name='signup'),
 ]

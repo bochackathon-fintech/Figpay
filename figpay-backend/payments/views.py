@@ -43,6 +43,8 @@ class VendorPaymentViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixin
 
         #transaction
 
-        self.perform_create(serializer)
+        payment = self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        payment.notify_for_checking_on_fb()
+
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
