@@ -27,7 +27,10 @@ if SERVER_TYPE == 'PROD':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.ngrok.io','.pixelactions.com']
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets'),
+)
+ALLOWED_HOSTS = ['localhost', '.ngrok.io', '.pixelactions.com', '.paywithfig.com']
 
 # Application definition
 
@@ -130,9 +133,10 @@ MEDIA_URL_LOCAL = "/media/"
 if SERVER_TYPE == 'PROD':
     STATIC_ROOT = '/home/kyris/webapps/figbackend_static'
     MEDIA_ROOT = '/home/kyris/webapps/figbackend_media'
+    STATIC_URL = '/static/'
     MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
 else:
-    #MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
+    # MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
     MEDIA_URL = 'http://localhost:8000/media/'
 
 EXPORTER_FRONT_APPLICATION_PATH = '../figpay_dashboard'
@@ -148,13 +152,8 @@ REST_FRAMEWORK = {
 KAIROS_APP_ID = '71638a6c'
 KAIROS_APP_KEY = '2b8d01b59a1237849c901e88daab667d'
 
-
-APPEND_SLASH=False
+APPEND_SLASH = False
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'assets'),
-)

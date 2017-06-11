@@ -11,8 +11,11 @@ def signup(request):
         if form.is_valid():
             newuser = form.save()
             pin = str(form.cleaned_data.pop('pin'))
-            #image = form.cleaned_data.pop('image')
-            consumer = Consumer(user=newuser, pin=pin, image_1=request.FILES['image'] )
+            # image = form.cleaned_data.pop('image')
+            first_name = form.cleaned_data.pop('first_name')
+            last_name = form.cleaned_data.pop('last_name')
+            consumer = Consumer(user=newuser, pin=pin, image_1=request.FILES['image'], first_name=first_name,
+                                last_name=last_name)
             consumer.save()
             # username = form.cleaned_data.get('username')
             # raw_password = form.cleaned_data.get('password1')
