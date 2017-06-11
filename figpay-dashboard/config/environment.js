@@ -65,7 +65,22 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.APP.API_HOST = 'http://connect.paywithfig.com';
+    ENV.APP.API_NAMESPACE = 'api';
+    ENV['ember-simple-auth'] = {
+      crossOriginWhitelist: ['*'],
+      authorizer: 'authorizer:token'
+    };
+    ENV['ember-simple-auth-token'] = {
+      serverTokenEndpoint: '/api/token-auth/',
+      identificationField: 'username',
+      passwordField: 'password',
+      tokenPropertyName: 'token',
+      refreshTokenPropertyName: 'refresh_token',
+      authorizationPrefix: 'Token ',
+      authorizationHeaderName: 'Authorization',
+      headers: {},
+    };
   }
 
 
