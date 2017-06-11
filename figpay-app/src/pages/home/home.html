@@ -1,13 +1,13 @@
 <ion-content padding [ngStyle]="getContentStyle()">
   <!--<div class="overlay"></div>-->
 
-  <button class="pay" ion-button color="dark" (click)="pay()" *ngIf="cameraPreviewEnabled">
-    Fig
-
-    <br>
+  <button class="pay" ion-button color="dark" (click)="pay()" *ngIf="cameraPreviewEnabled && !loading">
+    <small>Fig it!</small>
 
     <strong>€{{price}}</strong>
   </button>
+
+  <h2 class="loading" *ngIf="loading">Figging..</h2>
 
   <button class="close" ion-button clear (click)="close()" *ngIf="cameraPreviewEnabled">
     <ion-icon name="close"></ion-icon>
