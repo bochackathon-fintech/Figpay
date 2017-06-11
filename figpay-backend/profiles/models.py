@@ -18,7 +18,9 @@ class AbstractProfile(models.Model):
     last_name = models.CharField(max_length=100, blank=True)
     boc_acc = models.CharField(max_length=255, blank=True)
     facebook_id = models.CharField(max_length=255, blank=True)
+
     # ptype = models.CharField(max_length=10, choices=USER_TYPES)
+
     class Meta:
         abstract = True
 
@@ -46,13 +48,16 @@ class AbstractProfile(models.Model):
 
         try:
             conn = http.client.HTTPConnection('api.bocapi.net')
-            conn.request("GET", "/v1/api/banks/bda8eb884efcef7082792d45/accounts/bda8eb884efcea209b2a6240/5710bba5d42604e4072d1e92/transactions?%s" % params, "{body}", headers)
+            conn.request("GET",
+                         "/v1/api/banks/bda8eb884efcef7082792d45/accounts/bda8eb884efcea209b2a6240/5710bba5d42604e4072d1e92/transactions?%s" % params,
+                         "{body}", headers)
             response = conn.getresponse()
             data = response.read()
             print(data)
             conn.close()
         except Exception as e:
             print("[Errno {0}] {1}".format(e.errno, e.strerror))
+
 
 class Consumer(AbstractProfile):
     pin = models.IntegerField()
@@ -75,7 +80,6 @@ class Consumer(AbstractProfile):
 
     def __str__(self):
         return "(Consumer) %s " % self.user.username
-
 
     @property
     def fullname(self):
