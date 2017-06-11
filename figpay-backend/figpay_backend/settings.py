@@ -136,9 +136,14 @@ if SERVER_TYPE == 'PROD':
     STATIC_URL = '/static/'
     MEDIA_URL = 'http://figbackend.hosted.pixelactions.com/media/'
 else:
-    # MEDIA_URL = 'http://056fad5a.ngrok.io/media/'
-    MEDIA_URL = 'http://localhost:8000/media/'
+    MEDIA_URL = 'http://cd4c2b01.ngrok.io/media/'
+    #MEDIA_URL = 'http://localhost:8000/media/'
 
+
+if SERVER_TYPE == 'PROD':
+    KAIROS_GALLERY = 'figgallery'
+else:
+    KAIROS_GALLERY = 'figgallery-local'
 EXPORTER_FRONT_APPLICATION_PATH = '../figpay_dashboard'
 EXPORTER_ROUTER_PATH = 'figpay_backend.urls.router'
 

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from profiles.models import Vendor, Consumer
 
+from django.conf import settings
 
 class Upload(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
@@ -22,7 +23,7 @@ class Upload(models.Model):
         import kairos_face
         from kairos_face.exceptions import ServiceRequestError
         try:
-            response = kairos_face.recognize_face(url=self.image_1.url, gallery_name='figgallery')
+            response = kairos_face.recognize_face(url=self.image_1.url, gallery_name=settings.KAIROS_GALLERY)
         except ServiceRequestError as e:
             return {'prof': None, 'message': 'No faces detected', 'status': 400}
         print(response)

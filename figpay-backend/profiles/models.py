@@ -75,8 +75,18 @@ class Consumer(AbstractProfile):
             attr = getattr(self, img, None)
             if attr:
                 response = kairos_face.enroll_face(url=attr.url, subject_id=str(self.id),
-                                                   gallery_name='figgallery')
+                                                   gallery_name=settings.KAIROS_GALLERY)
         return response
+
+    def unenroll(self):
+        import kairos_face
+        images = ['image_%s' % i for i in range(1, 5)]
+        try:
+            response = kairos_face.remove_face(subject_id=str(self.id),
+                                               gallery_name=settings.KAIROS_GALLERY)
+            return response
+        except:
+            pass
 
     def __str__(self):
         return "(Consumer) %s " % self.user.username

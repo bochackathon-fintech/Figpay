@@ -10,7 +10,7 @@ class ConsumerAdmin(admin.ModelAdmin):
     list_display = ['id', 'user']
     search_fields = ['id', 'user__username']
 
-    actions = ['enroll_faces']
+    actions = ['enroll_faces', 'unenroll_faces']
 
     def enroll_faces(self, request, queryset):
         for model in queryset:
@@ -18,6 +18,14 @@ class ConsumerAdmin(admin.ModelAdmin):
             print(response)
 
     enroll_faces.short_description = "Enroll Faces to Face recognition API"
+
+
+    def unenroll_faces(self, request, queryset):
+        for model in queryset:
+            response = model.unenroll()
+            print(response)
+
+    unenroll_faces.short_description = "Remove Faces from Face recognition API"
 
 admin.site.register(Consumer, ConsumerAdmin)
 admin.site.register(Vendor)
