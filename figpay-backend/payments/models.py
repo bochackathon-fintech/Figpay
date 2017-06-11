@@ -88,7 +88,7 @@ class Payment(models.Model):
     def notify_for_checking_on_fb(self):
         recipient_id = self.consumer.facebook_id
         if recipient_id:
-            text = "Hello %s! Would you like to checking to our store?" % self.consumer.first_name
+            text = "Hello %s! Would you like to check in at our store?" % self.consumer.first_name
             data = {
                 "recipient": {
                     "id": str(recipient_id)
