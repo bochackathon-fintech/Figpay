@@ -19,7 +19,7 @@
 
 .heading-font {
   font-family: 'Montserrat', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 1px;
 }
 .body-font {
@@ -64,7 +64,7 @@ h4,
 h5,
 h6 {
   font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 100;
+  font-weight: 300;
 
   letter-spacing: 1px;
 }
@@ -80,12 +80,12 @@ p {
   -moz-transition: all 0.35s;
   transition: all 0.35s;
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 1px;
 }
 .navbar-default .navbar-header .navbar-brand {
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 1px;
   color: #fdcc52;
 }
@@ -464,7 +464,7 @@ body {
 }
 
 
-.btn{border-radius:0; font-size:17px; margin-top:20px; width:100%;}
+.btn{border-radius:0; border:0; font-size:22px; margin-top:20px; width:100%; background-color:#4E124F; padding:10px;}
 .feature-item h3{font-weight:500; color:#4E124F}
 p{font-size:22px; letter-spacing:1px; font-weight:300}
 .navbar-nav>li>a{padding-top:20px; padding-bottom:20px;}
