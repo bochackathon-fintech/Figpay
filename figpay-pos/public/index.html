@@ -9,6 +9,11 @@
     <title>FigPay POS</title>
 
     <style>
+        body {
+          margin: 0;
+          min-height: 100vh;
+          background: url("http://paywithfig.com/img/bg-pattern.png"), linear-gradient(to left, #2D362F, #649C43);
+        }
 
         body, input, button {
             font-family: 'Lato';
@@ -101,24 +106,17 @@
     <img class="logo" src="http://paywithfig.com/img/logo-white.png" alt="logo">
 </header>
 <div class="products">
-    <button style=" margin-bottom:10px;">
+    <button style="margin-bottom:10px;" onclick="pay(2.50)">
         <img src="assets/img/pizza.png">
         <span>&euro; 2.50</span>
     </button>
     <button>
-        <img src="assets/img/beer.png">
+        <img src="assets/img/beer.png" onclick="pay(3.50)">
         <span>&euro; 3.50</span>
     </button>
 </div>
-<!--<div class="payment">
-    <input class="amount" type="number" value="3.69"/>
-    <button onclick="pay()">Request</button>
-</div>
--->
 <script>
-    function pay() {
-        const amount = document.querySelector('.amount').value
-
+    function pay(amount) {
         const xmlhttp = new XMLHttpRequest()
         xmlhttp.open('POST', '/api/pay')
         xmlhttp.setRequestHeader('Content-Type', 'application/json')

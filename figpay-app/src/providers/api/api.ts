@@ -38,11 +38,25 @@ export class ApiProvider {
 
             this.makePayment(data)
               .then(resolve)
-              .catch(reject)
+              .catch((err) => {
+                if (err.status === 403) {
+                  return reject('Wrong PIN number')
+                }
+
+                reject('Something went wrong')
+              })
           })
           modal.present()
         })
-        .catch(reject)
+        .catch((err) => {
+          if (err.status === 400) {
+            return reject('Face not recognized. Please face the camera')
+          } else if (err.status === 404) {
+            return reject('Profile not found')
+          }
+
+          reject('Something went wrong')
+        })
     })
   }
 
@@ -69,7 +83,7 @@ export class ApiProvider {
         description: 'KEO 1/2 pint'
       }
       this.http
-        .post(`${API_BASE_URL}/vendors/payments/`, postData, this.getHeaders())
+        .post(`${API_BASE_URL}/vendor/payments/`, postData, this.getHeaders())
         .first()
         .map((res) => res.json())
         .subscribe(resolve, reject)

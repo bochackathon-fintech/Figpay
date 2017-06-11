@@ -8,4 +8,8 @@
 
     <strong>€{{price}}</strong>
   </button>
+
+  <button class="close" ion-button clear (click)="close()" *ngIf="cameraPreviewEnabled">
+    <ion-icon name="close"></ion-icon>
+  </button>
 </ion-content>

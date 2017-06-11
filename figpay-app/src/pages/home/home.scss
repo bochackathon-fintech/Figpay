@@ -43,5 +43,18 @@ page-home {
 
       width: 69px;
     }
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      padding: 10px;
+
+      font-size: 25px;
+
+      color: #fff;
+      text-shadow: 0px 0px 4px #000;
+    }
   }
 }

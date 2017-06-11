@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
 
-import { ToastController } from 'ionic-angular'
+import { AlertController } from 'ionic-angular'
 
 import {
-CameraPreview, CameraPreviewOptions,
-CameraPreviewPictureOptions
+  CameraPreview, CameraPreviewOptions,
+  CameraPreviewPictureOptions
 } from '@ionic-native/camera-preview'
 
 import { WS_SERVER_URL } from '../../constants'
@@ -24,7 +24,7 @@ export class HomePage {
   constructor(
     private cameraPreview: CameraPreview,
     private apiProvider: ApiProvider,
-    private toastController: ToastController
+    private alertController: AlertController
   ) {}
 
   ionViewDidLoad () {
@@ -54,40 +54,45 @@ export class HomePage {
           file: res[0]
         })
       })
-      .catch((err) => {
-        console.error('[HomePage] cameraPreview takePicture', err)
-      })
       .then((res) => {
         console.log('[HomePage] apiProvider pay', res)
 
         return this.cameraPreview.stopCamera()
-      })
-      .catch((err) => {
-        console.error('[HomePage] apiProvider pay', err)
       })
       .then((res) => {
         console.log('[HomePage] cameraPreview stopCamera', res)
 
         this.cameraPreviewEnabled = false
 
-        this.toastController
+        this.alertController
           .create({
-            message: 'Success!',
-            duration: 3000,
-            position: 'middle'
+            title: 'Success',
+            subTitle: `You've authorized a Fig for €${this.price}`,
+            buttons: ['ok']
           })
           .present()
       })
       .catch((err) => {
-        console.error('[HomePage] cameraPreview stopCamera', err)
+        console.error('[HomePage] catch', err)
 
-        this.toastController
+        this.alertController
           .create({
-            message: 'Fail',
-            duration: 3000,
-            position: 'middle'
+            title: 'Failed',
+            subTitle: err,
+            buttons: ['ok']
           })
           .present()
+      })
+  }
+
+  close () {
+    this.cameraPreview
+      .stopCamera()
+      .then((res) => {
+        this.cameraPreviewEnabled = false
+      })
+      .catch((err) => {
+        console.error('[HomePage] close', err)
       })
   }
 
