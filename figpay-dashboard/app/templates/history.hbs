@@ -19,7 +19,7 @@
             </thead>
             <tbody>
             {{#each model as |payment| }}
-              <tr class="just-arrived">
+              <tr class="{{unless payment.silentLoad 'just-arrived'}}">
                 <td>{{payment.createdOn}}</td>
                 <td>{{payment.description}}</td>
                 <td></td>

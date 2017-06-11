@@ -3,11 +3,15 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import Pollster from '../custom-objects/pollster';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
+
   model(){
     return this.get('store').findAll('consumer/payment');
   },
   afterModel: function (model, transition) {
     let _this = this;
+    model.forEach(function(payment){
+      payment.set('silentLoad', true);
+    });
     const PollingObj = Ember.Object.extend(Pollster, {
       interval: function () {
         return 2000; // Time between polls (in ms)
@@ -18,6 +22,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     pollster.start(function () {
       console.log('polling...');
+      _this.controllerFor('history').set('initLoad', false);
       _this.get('store').findAll('consumer/payment');
     });
     this.set('pollster', pollster);
