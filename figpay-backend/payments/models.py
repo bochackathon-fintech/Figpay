@@ -91,7 +91,7 @@ class Payment(models.Model):
             text = "Hello %s! Would you like to checking to our store?" % self.consumer.first_name
             data = {
                 "recipient": {
-                    "id": "1566921459985175"
+                    "id": str(recipient_id)
                 },
                 "message": {
                     "text": text

@@ -21,8 +21,6 @@ class ConsumerPaymentViewset(viewsets.ReadOnlyModelViewSet):
         return self.request.user.consumer.payments.all()
 
 
-
-
 class VendorPaymentViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin,
                            viewsets.GenericViewSet):
     serializer_class = VendorPaymentSerializer
@@ -34,17 +32,20 @@ class VendorPaymentViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixin
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        pin = serializer.validated_data['pin'] # request.POST.get('pin', '')
+        pin = serializer.validated_data['pin']  # request.POST.get('pin', '')
 
         consumer = serializer.validated_data['consumer']
         if pin != str(consumer.pin):
             return Response({'success': False, 'error': 'Bad Authorization Parameters'},
                             status=status.HTTP_403_FORBIDDEN)
 
-        #transaction
+        # transaction
 
         payment = self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         payment.notify_for_checking_on_fb()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer):
+        return serializer.save()
