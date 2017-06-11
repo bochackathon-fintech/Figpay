@@ -1,5 +1,9 @@
 $empty-space: 10px;
 
+.modal-wrapper {
+  height: 800px;
+}
+
 pin-modal {
   ion-content {
     margin: $empty-space $empty-space * 2;
@@ -15,12 +19,21 @@ pin-modal {
       justify-content: space-between;
 
       .message {
-        font-size: 23px;
+        padding: 20px;
+        font-size: 35px;
+        text-align: center;
+
+        strong {
+          color: rgba(100, 167, 67, 1)
+        }
       }
 
       .password {
         width: 60%;
         margin: 20px auto 0;
+        text-align: center;
+        font-size: 40px;
+        line-height: 0;
 
         .col {
           border-bottom: 1px solid rgba(#666, .5);
@@ -38,16 +51,11 @@ pin-modal {
           padding: 10px;
 
           .dialpad__key {
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
+            padding: 35px;
 
             font-size: 25px;
 
             display: inline-block;
-
-            border: 1px solid #666;
-            border-radius: 50%;
           }
         }
       }

@@ -18,8 +18,8 @@ import { ApiProvider } from '../../providers/api/api'
 export class HomePage {
   public price = 0
   public cameraPreviewEnabled = false
+  public loading = false
   private ws
-
 
   constructor(
     private cameraPreview: CameraPreview,
@@ -39,6 +39,8 @@ export class HomePage {
 
   pay () {
     console.log('[HomePage] pay', this.price)
+
+    this.loading = true
 
     const pictureOpts: CameraPreviewPictureOptions = {
       width: 500,
@@ -62,6 +64,8 @@ export class HomePage {
       .then((res) => {
         console.log('[HomePage] cameraPreview stopCamera', res)
 
+        this.loading = false
+
         this.cameraPreviewEnabled = false
 
         this.alertController
@@ -74,6 +78,8 @@ export class HomePage {
       })
       .catch((err) => {
         console.error('[HomePage] catch', err)
+
+        this.loading = false
 
         this.alertController
           .create({
