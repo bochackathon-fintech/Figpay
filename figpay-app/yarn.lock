@@ -1463,10 +1463,6 @@ cordova-plugin-media-capture@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-media-capture/-/cordova-plugin-media-capture-1.4.3.tgz#20e3bbe334fbb89f624b02188eac5372743920fa"
 
-cordova-plugin-speechrecognition@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-speechrecognition/-/cordova-plugin-speechrecognition-1.1.2.tgz#14503dac334e166a4cc4b87478b8ff72437e54ee"
-
 cordova-plugin-splashscreen@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-4.0.3.tgz#773cd1363c1f3bacb9901663e9e3793dd3e0a19d"
@@ -5388,8 +5384,8 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.1.tgz#76899499c184b6ef754377c2dbb0cd6cb55d29e7"
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
 
 which-module@^1.0.0:
   version "1.0.0"
