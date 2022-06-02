@@ -18,9 +18,11 @@
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.1.2.tgz#09542381162fd8dd962d84559498ce69a05071ea"
 
-"@angular/core@4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.1.2.tgz#37b5c040b9dd37003499aea04319d699e3870596"
+"@angular/core@11.0.5":
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-11.0.5.tgz#b8c448c3cd4f6dae7327cc1ba4ee2aa29c8dbc26"
+  dependencies:
+    tslib "^2.0.0"
 
 "@angular/forms@4.1.2":
   version "4.1.2"
@@ -1462,10 +1464,6 @@ cordova-plugin-file@^4.3.3:
 cordova-plugin-media-capture@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-media-capture/-/cordova-plugin-media-capture-1.4.3.tgz#20e3bbe334fbb89f624b02188eac5372743920fa"
-
-cordova-plugin-speechrecognition@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-speechrecognition/-/cordova-plugin-speechrecognition-1.1.2.tgz#14503dac334e166a4cc4b87478b8ff72437e54ee"
 
 cordova-plugin-splashscreen@^4.0.3:
   version "4.0.3"
@@ -5116,6 +5114,10 @@ tsickle@^0.21.0:
     mkdirp "^0.5.1"
     source-map "^0.5.6"
     source-map-support "^0.4.2"
+
+tslib@^2.0.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
 
 tslint-eslint-rules@1.5.0:
   version "1.5.0"
